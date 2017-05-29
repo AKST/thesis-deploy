@@ -2,7 +2,8 @@ FROM buildpack-deps:jessie
 
 RUN apt-get update && apt-get install -y \
       curl \
-      wget
+      wget \
+      screen
 
 
 # ensure local python is preferred over distribution python
@@ -147,10 +148,14 @@ WORKDIR /home/application
 
 COPY ./staging/ui ./ui
 COPY ./staging/analysis ./analysis
-COPY ./scripts/start.sh ./start.sh
 
 RUN cd ui && yarn && cd ..
 RUN cd analysis && pip3 install -r requirements.txt && cd ..
 
-CMD [/home/application/start.sh]
+COPY ./scripts/start.sh ./start.sh
+RUN chmod +x ./start.sh
+
+EXPOSE 80
+
+CMD ["bash", "./start.sh"]
 
