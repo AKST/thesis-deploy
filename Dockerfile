@@ -155,7 +155,7 @@ RUN cd analysis && pip3 install -r requirements.txt && cd ..
 COPY ./scripts/start.sh ./start.sh
 RUN chmod +x ./start.sh
 
-EXPOSE 80
+EXPOSE 4200
 
 CMD ["bash", "./start.sh"]
 
