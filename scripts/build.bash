@@ -32,6 +32,7 @@ main() {
   local ui_dir=$root/staging/ui
 
   rm -rf ./staging
+  rm -rf ./dist
   mkdir "$staging_dir"
   mkdir "$server_dir"
   mkdir "$ui_dir"
@@ -44,6 +45,9 @@ main() {
     move_to_staging $file
   done
 
+  mkdir dist
+  zip -r dist/staged.zip . \
+    --exclude .git/**\* dist/*.zip
 }
 
 main $@

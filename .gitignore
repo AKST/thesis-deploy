@@ -1,4 +1,5 @@
 staging
+dist
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
